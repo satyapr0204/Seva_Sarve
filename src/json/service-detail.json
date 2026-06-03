@@ -1,0 +1,134 @@
+{
+  "serviceDetails": {
+    "service": {
+      "category": "Plumbing",
+      "banner_title": "Expert Plumbing Services",
+      "banner_subtitle": "Fast • Reliable • Verified Contractors"
+    },
+
+    "sub_categories": [
+      {
+        "id": 1,
+        "name": "Repairs",
+        "active": false
+      },
+      {
+        "id": 2,
+        "name": "Installations",
+        "active": true
+      },
+      {
+        "id": 3,
+        "name": "Rough Plumbing",
+        "active": false
+      }
+    ],
+
+    "facingIssues": [
+      {
+        "issue_type": {
+          "title": "Tap / Faucet Installation",
+          "description": "Fix or install faucets in kitchen, bathroom, or wash area.",
+          "icon": "tap-installation.png"
+        },
+
+        "issue_options": [
+          {
+            "id": 1,
+            "title": "Joint tap",
+            "image": "joint-tap.png",
+            "selected": false
+          },
+          {
+            "id": 2,
+            "title": "Tap handle broken",
+            "image": "tap-handle.png",
+            "selected": true,
+            "warning_message": "Upgrade your space with a new sink installation service from a trusted local plumber."
+          }
+        ],
+
+        "problem_description": {
+          "label": "Problem Description",
+          "placeholder": "Describe the specific issue..."
+        },
+
+        "upload_section": {
+          "title": "Uploaded Image/Video",
+          "upload_text": "Drag and drop files here, or click to browse",
+
+          "uploaded_files": [
+            {
+              "id": 1,
+              "type": "image",
+              "file_name": "plumbing-1.jpg",
+              "preview": "plumbing-1.jpg"
+            }
+          ]
+        }
+      }
+    ],
+
+    "additional_services": [
+      {
+        "id": 1,
+        "title": "Shower Installation",
+        "description": "Install overhead, hand shower, or wall-mounted shower systems.",
+        "icon": "shower-installation.png",
+        "selected": false
+      }
+    ]
+  },
+  "estimation":{
+  "category": {
+    "id": 1,
+    "name": "Plumbing"
+  },
+  "subcategory": {
+    "id": 12,
+    "name": "Installations"
+  },
+  "issue": {
+    "id": 101,
+    "title": "Tap / Faucet Installation",
+    "tags": [
+      "Tap Handle Broken",
+      "Tap Handle Broken"
+    ]
+  },
+  "problem_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "uploaded_media": [
+    {
+      "id": 1,
+      "type": "image",
+      "url": "images/inner-page/issue-icon.svg"
+    },
+    {
+      "id": 2,
+      "type": "image",
+      "url": "images/inner-page/issue-icon.svg"
+    },
+    {
+      "id": 3,
+      "type": "image",
+      "url": "images/inner-page/issue-icon.svg"
+    },
+    {
+      "id": 4,
+      "type": "image",
+      "url": "images/inner-page/issue-icon.svg"
+    }
+  ],
+  "estimate": {
+    "minimum": 149,
+    "maximum": 299,
+    "average_cost": 224,
+    "currency": "$"
+  },
+  "actions": {
+    "save_add_more": true,
+    "save_add_to_cart": true
+  }
+}
+}
+
