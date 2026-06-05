@@ -2734,6 +2734,15 @@ p.body-text a {
   border: 1px solid #99131833;
 }
 
+.ui-datepicker-inline.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all {
+  font-family: "Poppins", sans-serif;
+  border-radius: 15px;
+  border-color: var(--white);
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #99131833;
+}
+
 .ui-widget-header {
   background: none !important;
   border: none !important;

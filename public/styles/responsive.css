@@ -630,6 +630,7 @@ span.primary-cta.tap {
 .plumbing-wrp-book {
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 .plumbing-wrp-book .plumbing p.bold-text {
     font-size: 15px;
@@ -1140,6 +1141,7 @@ span.primary-cta.tap {
 .plumbing-wrp-book {
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 .plumbing-wrp-book .plumbing p.bold-text {
     font-size: 15px;
@@ -1786,6 +1788,7 @@ span.primary-cta.tap {
 .plumbing-wrp-book {
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 .plumbing-wrp-book .plumbing p.bold-text {
     font-size: 15px;
@@ -2430,6 +2433,7 @@ span.primary-cta.tap {
 .plumbing-wrp-book {
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 .plumbing-wrp-book .plumbing p.bold-text {
     font-size: 15px;
@@ -2521,4 +2525,17 @@ a.primary-cta img {
     font-size: 12px;
 }
 
+}
+
+/* sunil */
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+    .progress-line.step-fill{
+        margin-bottom: 27px;
+    }
+    .service-status-inner{
+        flex-direction: column;
+    }
+    .container.home-wraper.my-profile.fixing{
+        min-height: 88dvh;
+    }
 }

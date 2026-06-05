@@ -10,7 +10,7 @@ const HelpSupport = () => {
   return (
    <>
      <main>
-      <div className="container home-wraper my-profile">
+      <div className="container home-wraper my-profile fixing">
       
         <section>
           <div className="container">

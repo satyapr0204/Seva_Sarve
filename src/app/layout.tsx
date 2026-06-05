@@ -95,8 +95,8 @@ export default function RootLayout({
         <link rel="stylesheet" href="/styles/bootstrap.min.css" />
         <link rel="stylesheet" href="/styles/all.min.css" />
         <link rel="stylesheet" href="/styles/slick.css" />
-        <link rel="stylesheet" href="/styles/responsive.css" />
         <link rel="stylesheet" href="/styles/style.css" />
+        <link rel="stylesheet" href="/styles/responsive.css" />
         <link
           rel="stylesheet"
           href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
