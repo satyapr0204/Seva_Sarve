@@ -2538,4 +2538,12 @@ a.primary-cta img {
     .container.home-wraper.my-profile.fixing{
         min-height: 88dvh;
     }
+
+    .service-issues-content ul{
+        display: flex;
+        flex-direction: column;
+    }
+    .service-issues-content {
+        padding: 15px;
+    }
 }

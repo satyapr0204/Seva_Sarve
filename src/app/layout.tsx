@@ -29,6 +29,15 @@ export default function RootLayout({
   const pathname = usePathname(); // 2. CAPTURED: Tracks current path change
 
   useEffect(() => {
+
+    document
+    .querySelectorAll(".offcanvas-backdrop, .modal-backdrop")
+    .forEach((el) => el.remove());
+
+  document.body.classList.remove("modal-open");
+  document.body.style.overflow = "";
+  document.body.style.paddingRight = "";
+
     // Clean up any previously appended script instances on path change
     // to prevent piling up dozens of duplicate script nodes in the <head>
     const existingCustomScripts = document.querySelectorAll(".dynamic-script");
@@ -87,7 +96,129 @@ export default function RootLayout({
     };
 
     document.head.appendChild(jqueryScript);
-  }, [pathname]); // 3. FIXED: Re-executes scripts cleanly whenever user switches pages!
+  }, []); // 3. FIXED: Re-executes scripts cleanly whenever user switches pages!
+
+
+useEffect(() => {
+
+  if (typeof window !== "undefined") {
+
+    setTimeout(() => {
+
+      const $ = (window as any).$;
+
+      if (!$) return;
+
+      // Hero Slider
+      if (
+        $(".hero-slider").length &&
+        !$(".hero-slider").hasClass("slick-initialized")
+      ) {
+        $(".hero-slider").slick({
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          arrows: false,
+          dots: true,
+          autoplay: true,
+          responsive: [
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              },
+            },
+          ],
+        });
+      }
+
+      // Upcoming Slider
+      if (
+        $(".upcoming-slider").length &&
+        !$(".upcoming-slider").hasClass("slick-initialized")
+      ) {
+        $(".upcoming-slider").slick({
+          dots: false,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          centerMode: true,
+          autoplay: true,
+          arrows: false,
+          variableWidth: true,
+        });
+      }
+
+      if (
+        $(".top-services-slider").length &&
+        !$(".top-services-slider").hasClass("slick-initialized")
+      ) {
+        $(".top-services-slider").slick({
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          arrows: true,
+          dots: false,
+          draggable: false,
+          infinite: true,
+          autoplay: false,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 2,
+              },
+            },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 1,
+              },
+            },
+          ],
+        });
+      }
+
+
+      if (
+        $(".featured-category-slider").length &&
+        !$(".featured-category-slider").hasClass("slick-initialized")
+      ) {
+        $(".featured-category-slider").slick({
+          slidesToShow: 8,
+          slidesToScroll: 1,
+          arrows: true,
+          dots: false,
+          draggable: false,
+          infinite: true,
+          autoplay: false,
+          responsive: [
+            {
+              breakpoint: 1439,
+              settings: {
+                slidesToShow: 6,
+              },
+            },
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 5,
+              },
+            },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 1,
+              },
+            },
+          ],
+        });
+      }
+
+    }, 300);
+  }
+
+}, [pathname]);
 
   return (
     <html lang="en">

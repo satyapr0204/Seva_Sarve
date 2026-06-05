@@ -4918,6 +4918,7 @@ span.status.home {
         padding: 20px;
     border-radius: 15px;
     width: 100%;
+    position: relative;   /* ← add this line  by sunil*/
 }
 .choose-plan-wrp {
     display: flex;
@@ -4931,15 +4932,18 @@ span.status.home {
     box-shadow: 0px 0px 0px 2px #991318;
         position: relative;
 }
-.yearly-cards.active span img {
+/* .yearly-cards.active span img { by sunil */
+.yearly-cards span img {
     width: 15px;
     height: 15px;
 }
-.yearly-cards.active span {
+/* .yearly-cards.active span { by sunil */
+.yearly-cards span {
   background-color: var(--primary-color);
   color: var(--white);
 }
-.yearly-cards.active span {
+/* .yearly-cards.active span { by sunil comment */
+.yearly-cards span {
     display: flex;
     align-items: center;
     gap: 10px;
