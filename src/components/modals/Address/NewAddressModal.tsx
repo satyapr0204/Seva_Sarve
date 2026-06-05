@@ -233,7 +233,6 @@ const NewAddressModal: React.FC<NewAddressModalProps> = ({ selectedAddress, onSa
       onSave(finalData);
       formik.resetForm();
       onClose();
-
       handleModalClose();
     },
   });
