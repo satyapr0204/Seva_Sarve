@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const CancelBooking = () => {
@@ -16,10 +17,10 @@ const CancelBooking = () => {
               <p className="body-text">If cancelled, you may lose your deposit. If possible, please try rescheduling or contact <a href="#">Help & Support</a> for assistance.</p>
               <p className="notice">Notice:  <span> Bookings cannot be cancelled within 24 hours of the appointment.</span></p>
               <div className="cnl-cta">
-                <button className="secondary-cta">Reschedule</button>
+                <button className="secondary-cta" data-bs-target="#select-date-time-popup" data-bs-toggle="modal" >Reschedule</button>
                 <button type="button" className="secondary-cta cancel">Cancel</button>
               </div>
-              <p className="contact"><a href="#">Contact Help & Support</a></p>
+              <p className="contact"><Link href="/help-support">Contact Help & Support</Link></p>
             </div>
           </div>
         </div>

@@ -14,32 +14,47 @@ const NewServiceRejectionModal = () => {
   //   }
   // }
 
-const handleServiceRejection = (e: React.MouseEvent<HTMLAnchorElement>) => {
+const handleServiceRejection = (
+  e: React.MouseEvent<HTMLAnchorElement>
+) => {
   e.preventDefault();
 
-  if (!reason || reason.trim() === "") {
+  if (!reason.trim()) {
     toast.error("Please provide a reason for rejection.");
-    return;
-  }
-
-  const modalEl = document.getElementById("servicesRejected");
-
-  if (!modalEl) {
-    console.log("Modal not found");
     return;
   }
 
   const bootstrap = (window as any).bootstrap;
 
-  const modalInstance =
-    bootstrap?.Modal?.getInstance(modalEl) ||
-    bootstrap?.Modal?.getOrCreateInstance(modalEl);
+  const currentModalEl = document.getElementById("servicesRejection");
+  const confirmModalEl = document.getElementById("#servicesRejected");
 
-   console.log("modalInstance:", modalInstance);
+  console.log("Current Modal:", currentModalEl);
+  console.log("Confirmation Modal:", confirmModalEl);
 
-  modalInstance?.hide();
+  if (!currentModalEl) {
+    console.log("Current modal not found");
+    return;
+  }
 
-  setReason("");
+  const currentModal =
+    bootstrap?.Modal?.getInstance(currentModalEl) ||
+    bootstrap?.Modal?.getOrCreateInstance(currentModalEl);
+
+  currentModal.hide();
+
+  if (confirmModalEl) {
+    currentModalEl.addEventListener(
+      "hidden.bs.modal",
+      () => {
+        const confirmModal =
+          bootstrap?.Modal?.getOrCreateInstance(confirmModalEl);
+
+        confirmModal?.show();
+      },
+      { once: true }
+    );
+  }
 };
   
 
@@ -65,7 +80,7 @@ const handleServiceRejection = (e: React.MouseEvent<HTMLAnchorElement>) => {
             </div>
             <div className="home-quotes-cta">
            
-            <a href="#" className="primary-cta rgt"  
+            <a href="#" className="primary-cta rgt"   
              onClick={handleServiceRejection}>  Reject </a>
              <button type="button" data-bs-dismiss="modal" className="reject-btn">Cancel</button>
           </div>

@@ -26,7 +26,7 @@ const SidebarMenu = () => {
         <li><Link href="/booking">My Bookings</Link></li>
         <li><Link href="/quotes">My Quotes</Link></li>
         <li><Link href="/my-payment">My Payments</Link></li>
-        <li><Link href="/subscription">Subscription</Link></li>
+        <li><Link href="/choose-plan">Subscription</Link></li>
         <li><Link href="/saved-address">Saved Address</Link></li>
         <li><Link href="#logout-popup" data-bs-toggle="modal">Logout</Link></li>
       </ul>

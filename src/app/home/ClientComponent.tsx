@@ -51,7 +51,7 @@ const ClientComponent = () => {
       </section>
 
       <section>
-        <div className="container">
+        <div className="container" onClick={()=>router.push("/view-booking-detail")}>
           <div className="row">
             <div className="col-lg-12">
               <div className="pipe-leakage">

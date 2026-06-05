@@ -11,6 +11,7 @@ const Header = () => {
 
   const [loginStatus, setLoginStatus] = useState<string | null>(null);
 
+
   useEffect(() => {
 
     // INITIAL VALUE
@@ -112,10 +113,10 @@ const Header = () => {
                     <div className="top-img-pro">
                       <div className="progress-wrp">
                         {/* <circle-progress className="my-progress"
-                          max="100"
-                          value="60"
+                          max={100}
+                          value={60}
                           text-format="percent"
-                        ></circle-progress> */}
+                        /> */}
                         <img src="images/inner-page/user-profile.svg" alt="" />
                       </div>
                       <div className="roger-number">

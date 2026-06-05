@@ -250,7 +250,8 @@ export default function Booking() {
                                                                     <div className="plumbing-top">
 
 
-                                                                        {     item?.status === "Completed" && (  <p className="plm cmp">
+                                                                        {     item?.status === "Completed" && (  
+                                                                            <p className="plm cmp">
                                                                             {item.category}
                                                                             <img src="images/home/up-right-arrow.svg" alt="" /> <span>Completed <img src="images/inner-page/complete-check-icon.svg" alt="" /></span>
                                                                         </p>)}
@@ -287,7 +288,7 @@ export default function Booking() {
 
 
                                                                       
-                                                                    <p className="months">{item.booking_date} • {item.booking_time}</p>
+                                                                    <p className="sub-cate">{item.booking_date} • {item.booking_time}</p>
                                                                     {(item.status === "Cancelled" || item?.status === "Completed") && (
                                                                         <p className="service-cost">Amount :<span>{`$ ${item?.amount}` || "$0"}</span></p>
                                                                     )}
@@ -361,13 +362,23 @@ export default function Booking() {
                                                                             </div>
                                                                         )}
 
-                                                                           {/* <div className="home-quotes-cta">
-                                                                             
-                                                                                <button className="primary-cta rgt" data-bs-target="#rescheduleRequest" data-bs-toggle="modal">
-                                                                                    <img src="images/inner-page/download-icon.svg" className="img-left" alt="" />  Download Invoice
+                                                          {item?.status === "fully-Completed" && 
+                                                          
+                                                        (  
 
-                                                                                </button>
-                                                                            </div> */}
+                                                            <div className="service-quotes my-booking">
+                                                       <div className="home-quotes-cta"> 
+                                                                
+                                                                <button className="primary-cta rgt" 
+
+                                                                // data-bs-target="#rescheduleRequest" data-bs-toggle="modal"
+                                                                >
+                                                                    <img src="images/inner-page/download-icon.svg" className="img-left" alt="" />  Download Invoice
+
+                                                                </button>
+                                                        </div>
+                                                        </div>
+                                                            )}
 
 
                                                                     </div>

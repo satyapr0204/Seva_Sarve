@@ -44,6 +44,14 @@ img {
   color: var(--white);
   align-items: center;
 }
+
+.primary-cta:disabled {
+  background-color: #cccccc;
+  border-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
 .secondary-cta {
   color: var(--black);
   background: var(--white);
@@ -658,6 +666,7 @@ a.reject-btn {
   padding: 20px;
   border: 1px solid #99131833;
   border-radius: 25px;
+  margin-bottom: 22px;
 }
 .my-quotes-wrp {
   padding: 20px 0;
@@ -3640,7 +3649,7 @@ a.hel-cta {
 .top-services-slider button.slick-next.slick-arrow {
   background-image: url(../images/services/right-arrow.svg);
   left: inherit;
-  right: -.0rem;
+  right: -1.5rem;
 }
 
 .top-services-slider .upcoming-my-slide {

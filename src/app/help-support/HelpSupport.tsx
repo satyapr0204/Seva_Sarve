@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 
@@ -18,7 +19,7 @@ const HelpSupport = () => {
               <div className="col-lg-12">
                 <div className="browse-wrp">
                   <div className="browse-ctg-head my-con-head">
-                    <h2 className="sub-cate-page" > <a onClick={()=>router.back()} href=""  ><img src="images/home/left-arrow.svg" alt=""/></a>Help & Support</h2>
+                    <h2 className="sub-cate-page" > <Link  href="/"  ><img src="images/home/left-arrow.svg" alt=""/></Link>Help & Support</h2>
                    
                   </div>
                   <div className="help-support-wrp">

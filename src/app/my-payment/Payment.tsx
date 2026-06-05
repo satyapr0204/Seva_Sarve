@@ -289,15 +289,23 @@ const Payment = () => {
                                                         </div>
 
                                                         <div className="right-payments-body">
-                                                            <button className="secondary-cta" onClick={() => router.push("/serviceDetails")}>
+                                                            <button className="secondary-cta" onClick={() => router.push("/view-booking-detail")}>
                                                                 View Job
                                                             </button>
-                                                            {item.status === 'pending' && (
-                                                                <button className="primary-cta" onClick={() => router.push("/checkout")}>
-                                                                    <img className="pay" src="images/modal/notice-right-arrow.svg" alt="" />
+                                                          {item.status === "pending" && (
+                                                                <button
+                                                                    className="primary-cta"
+                                                                    disabled={item.status === "pending"}
+                                                                    onClick={() => router.push("/checkout")}
+                                                                >
+                                                                    <img
+                                                                    className="pay"
+                                                                    src="images/modal/notice-right-arrow.svg"
+                                                                    alt=""
+                                                                    />
                                                                     Pay Now
                                                                 </button>
-                                                            )}
+                                                                )}
                                                         </div>
                                                     </div>
                                                 ))}

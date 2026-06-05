@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const BookingUpdate = () => {
@@ -9,16 +10,13 @@ const BookingUpdate = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="browse-wrp">
-
-
-                
-
+            
                 <div className="browse-ctg-head my-con-head">
                   <h2 className="sub-cate-page">
-                    <a href="#"><img src="images/home/left-arrow.svg" alt="" /></a>
+                    <Link href="/view-booking-detail"><img src="images/home/left-arrow.svg" alt="" /></Link>
                     Booking Update
                   </h2>
-                  <a href="" className="hel-cta"><i className="fa-regular fa-circle-question"></i> Help & Support</a>
+                  <Link href="/help-support" className="hel-cta"><i className="fa-regular fa-circle-question"></i> Help & Support</Link>
                 </div>
 
                 <div className="contractor-runnig-late">

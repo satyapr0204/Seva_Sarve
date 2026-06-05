@@ -59,7 +59,7 @@
       {
         "id": 4,
         "category": "Plumbing",
-        "status": "Completed",
+        "status": "fully-Completed",
         "booking_date": "2026-11-19",
         "booking_time": "10:30 AM",
         "amount": 149,

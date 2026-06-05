@@ -2,14 +2,36 @@
 import CompletedService from '@/components/modals/bookingmodals/CompletedService'
 import ReviewAdditionalServices from '@/components/modals/bookingmodals/ReviewAdditionalServices'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/navigation';
+
+import React, { useEffect, useState } from 'react'
 
 const ViewBookingDetail = () => {
+
+const router=useRouter()
+const [showDropdown, setShowDropdown] = useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    const modalElement = document.getElementById("reviewAdditional");
+
+    if (modalElement) {
+      const modal = new (window as any).bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }, 2000);
+
+  return () => clearTimeout(timer);
+}, []);
+
+//   const toggleCostDropdown = () => {
+//   document.getElementById("costDropdown")?.classList.toggle("show");
+// };
   return (
      <>
        <main>
       <div className="container home-wraper my-profile" style={{height: "auto"}}>
-        
+ 
         <section>
           <div className="container">
             <div className="row">
@@ -22,6 +44,26 @@ const ViewBookingDetail = () => {
                     </h2>
                     <Link href="/help-support" className="hel-cta"><i className="fa-regular fa-circle-question"></i> Help & Support</Link>
                   </div>
+                    <div className="runing-late">
+
+                    <div className="left-data-traking"  >
+                      <div className="clock-runing-icon" onClick={()=>router.back()}>
+                      <img src="images/clock-icon.svg" alt=""/>
+                    </div>
+
+                    <div className="contract-left-text">
+                      <h3>Your contractor is running late</h3>
+                      <p>They've requested to push your booking by <span className="hours">1h</span>.</p>
+                    </div>
+                    </div>
+
+                    <Link href="/booking-update" className="right-arrow-runing">
+                      <img src="images/right-arrow.svg" alt=""/>
+                    </Link>
+
+                  </div>
+
+
                   {/* <!-- SERVICE-STATUS-SECTION --> */}
                   <div className="service-status-wrp">
                     <h4>Service Status</h4>
@@ -144,7 +186,7 @@ const ViewBookingDetail = () => {
                  
 
                  
-                  <div className="cost-details-wrp">
+                  {/* <div className="cost-details-wrp">
                     <h4>Booking Cost Details</h4>
                     <div className="cost-details-in">
                       <p>Deposit / Deductible Amount <span>$10</span></p>
@@ -152,7 +194,118 @@ const ViewBookingDetail = () => {
                       <hr/>
                       <p  data-bs-target="#reviewAdditional" data-bs-toggle="modal">Total Cost <span><b>$80</b></span></p>
                     </div>
+                  </div> */}
+              
+
+                   <div className="cost-details-wrp">
+                    <h4>Booking Cost Details</h4>
+                    {/* <!-- <div className="cost-details-in">
+                      <p>Deposit / Deductible Amount <span>$10</span></p>
+                      <p>Remaining Cost <span>$10</span></p>
+                      <hr>
+                      <p  data-bs-target="#reviewAdditional" data-bs-toggle="modal">Total Cost <span><b>$80</b></span></p>
+                    </div> --> */}
+                    <div className="cost-details-in">
+    <p>
+        Deposit / Deductible Amount 
+        <span>$10</span>
+    </p>
+
+    {/* <!-- Additional Services Dropdown --> */}
+  <div className="additional-services">
+
+    {/* <!-- Top Toggle --> */}
+    <div className="drop-down-toggle">
+        {/* <p className="dropdown-toggle-cost" onClick={() => setShowDropdown(!showDropdown)}> */}
+        <p
+          className="dropdown-toggle-cost"
+          // className='nested-toggle'
+          // onClick={() => {
+          //   // console.log("clicked");
+          //   setShowDropdown(prev => !prev);
+          // }}
+>
+            Additional Services Cost
+            <img src="images/header/down-icon.svg" alt=""/>
+        </p>
+
+        <span>$20</span>
+    </div>
+
+ 
+    {/* { showDropdown && ( */}
+      <div className="dropdown-cost-box" id="costDropdown">
+
+        
+        <div className="nested-dropdown">
+
+            <div className="nested-toggle"  >
+                <p>
+                    Material Cost
+                    <img src="images/header/down-icon.svg" alt=""/>
+                </p>
+
+                <span>$05</span>
+            </div>
+
+         
+             <div className="nested-dropdown-menu">
+                <ul>
+    <li>
+        <span className="header">Material Receipt</span>
+       
+    </li>
+
+    <li>
+        <span>Receipt 01</span>
+        <button>
+            <img src="images/inner-page/download-icon-drop.svg" alt=""/>
+        </button>
+    </li>
+
+    <li>
+        <span>Receipt 02</span>
+        <button>
+            <img src="images/inner-page/download-icon-drop.svg" alt=""/>
+        </button>
+    </li>
+
+    <li>
+        <span>Receipt 03</span>
+        <button>
+            <img src="images/inner-page/download-icon-drop.svg" alt=""/>
+        </button>
+    </li>
+</ul>
+            </div>
+
+        </div>
+
+        {/* <!-- Labour --> */}
+        <p>
+            Labour Cost
+            <span>$02</span>
+        </p>
+
+    </div>
+    {/* )} */}
+</div>
+
+    <p>
+        Remaining Cost 
+        <span>$70</span>
+    </p>
+
+    <hr/>
+
+    <p data-bs-target="#reviewAdditional" data-bs-toggle="modal">
+        Total Cost 
+        <span><b>$100</b></span>
+    </p>
+</div>
                   </div>
+
+
                  <div className="progress-btn-rgt">
                      <button type="button" className="primary-cta" data-bs-target="#serviceCompleted" data-bs-toggle="modal">Pay Now <span>$70</span></button>
                  </div>

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const ReviewAdditionalServices = () => {
@@ -15,7 +16,7 @@ const ReviewAdditionalServices = () => {
                   <h4>Review Additional Services</h4>
                   <p>The contractor has requested additional services for this job.</p>
                   <p> Please review the details and quotation carefully before making a decision.</p>
-                  <a href="#add-Your-Card" data-bs-toggle="modal" className="primary-cta requ-suc same">Go to My Quotes</a>
+                  <Link href="/quotes"  className="primary-cta requ-suc same">Go to My Quotes</Link>
                 </div>
               </div>
               
