@@ -326,6 +326,382 @@ export default function ServiceViewDetail (){
                         
                       </div>
 
+                        <div className="service-issues-in">
+
+
+                        { serviceDetails?.facingIssues?.map((item, index)=>( 
+                          <div key={`${index}_all`}>
+                              <div  className="service-issues-tab">
+                            <img
+                            src="images/service-details/service-issue.svg"
+                            alt=""
+                           />
+                          <div className="service-issues-tab-data">
+                            <h4>
+                             { item?.issue_type?.title||"NA"}
+                              <input type="checkbox" className="tab-check" onClick={()=>setAddedCategory(!addedCategory)} />
+                            </h4>
+                            <p>
+                           {
+                            item?.issue_type?.description ||
+                            "Fix or install new taps in kitchen, bathroom, or wash area."
+                          }
+                            </p>
+                          </div>
+                        </div> 
+                       <div
+                          className="service-issues-content"
+                          style={{display: "none"}}
+                        >
+                          <hr />
+                          <p>Select specific issue for Tap / Faucet Repair</p>
+                          <ul>
+                           { item?.issue_options.map((item)=>(
+                               <li key={item?.id}>
+                              <label
+                                ><img
+                                  src="images/service-details/issues/1.jpg"
+                                  alt=""
+                                />
+                                {item?.title || "Leaking Tap"} <input type="checkbox" />
+                              </label>
+                              <div className="hover-data">
+                                Upgrade your space with a new sink installation.
+                                We handle removal, fitting, and leak-proof
+                                connections for a hassle-free experience.
+                              </div>
+                            </li>
+                           )) }
+                            {/* <li>
+                              <label
+                                ><img
+                                  src="images/service-details/issues/2.jpg"
+                                  alt="" />
+                                Tap Handle Broken <input type="checkbox"
+                              /></label>
+                              <div className="hover-data">
+                                Upgrade your space with a new sink installation.
+                                We handle removal, fitting, and leak-proof
+                                connections for a hassle-free experience.
+                              </div>
+                            </li>
+                            <li>
+                              <label
+                                ><img
+                                  src="images/service-details/issues/3.jpg"
+                                  alt="" />
+                                Low Water Pressure <input type="checkbox"
+                              /></label>
+                              <div className="hover-data">
+                                Upgrade your space with a new sink installation.
+                                We handle removal, fitting, and leak-proof
+                                connections for a hassle-free experience.
+                              </div>
+                            </li>
+                            <li>
+                              <label
+                                ><img
+                                  src="images/service-details/issues/4.jpg"
+                                  alt="" />
+                                Tap Replacement <input type="checkbox"
+                              /></label>
+                              <div className="hover-data">
+                                Upgrade your space with a new sink installation.
+                                We handle removal, fitting, and leak-proof
+                                connections for a hassle-free experience.
+                              </div>
+                            </li> */}
+                          </ul>
+                          <div className="service-issues-content-problem">
+                            <h3>Problem Description</h3>
+                           <textarea
+                        value={problemDesc}
+                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                          setProblemDesc(e.target.value)
+                        }
+                        placeholder="Describe the specific issue..."
+                      ></textarea>
+                            <h3>Uploaded Image/Video</h3>
+                            <label>
+                              <img
+                                src="images/service-details/upload-icon.svg"
+                                alt=""
+                              />
+                              Drag and drop files here, or click to browse
+                              <input type="file"
+                               multiple
+                               accept="image/*,video/*"
+                               onChange={handleFile}
+                               hidden
+                             />
+                            </label>
+                         <div className="service-issues-content-problem-thumbs">
+                          {uploadedImg.map((item, index) => (
+                            <div
+                              // key={index}
+                              className="service-issues-content-problem-thumbs-image"
+                            >
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveImage(index)}
+                              >
+                                <img
+                                  src="/images/service-details/cancel-icon.svg"
+                                  alt=""
+                                />
+                              </button>
+                               
+                              <img
+                                src={
+                                  item ||
+                                  "/images/service-details/thumb-image.svg"                                  
+                                }
+                                alt=""
+                                width={100}
+                                // hidden
+                              />
+                            </div>
+                          ))}
+                        </div>
+                              {/* <div
+                                className="service-issues-content-problem-thumbs-image"
+                              >
+                                <button type="button">
+                                  <img
+                                    src="images/service-details/cancel-icon.svg"
+                                    alt=""
+                                  />
+                                </button>
+                                <img
+                                  src="images/service-details/thumb-image.svg"
+                                  alt=""
+                                />
+                              </div> */}
+                              {/* <div
+                                className="service-issues-content-problem-thumbs-image"
+                              >
+                                <button type="button">
+                                  <img
+                                    src="images/service-details/cancel-icon.svg"
+                                    alt=""
+                                  />
+                                </button>
+                                <img
+                                  src="images/service-details/thumb-image.svg"
+                                  alt=""
+                                />
+                              </div> */}
+                              {/* <div
+                                className="service-issues-content-problem-thumbs-image"
+                              >
+                                <button type="button">
+                                  <img
+                                    src="images/service-details/cancel-icon.svg"
+                                    alt=""
+                                  />
+                                </button>
+                                <img
+                                  src="images/service-details/thumb-image.svg"
+                                  alt=""
+                                />
+                              </div> */}
+                            {/* </div> */}
+                        </div>
+                        </div>
+                          </div>
+                        
+                      ))                                          }
+                        
+                      </div>
+
+                        <div className="service-issues-in">
+
+
+                        { serviceDetails?.facingIssues?.map((item, index)=>( 
+                          <div key={`${index}_all`}>
+                              <div  className="service-issues-tab">
+                            <img
+                            src="images/service-details/service-issue.svg"
+                            alt=""
+                           />
+                          <div className="service-issues-tab-data">
+                            <h4>
+                             { item?.issue_type?.title||"NA"}
+                              <input type="checkbox" className="tab-check" onClick={()=>setAddedCategory(!addedCategory)} />
+                            </h4>
+                            <p>
+                           {
+                            item?.issue_type?.description ||
+                            "Fix or install new taps in kitchen, bathroom, or wash area."
+                          }
+                            </p>
+                          </div>
+                        </div> 
+                       <div
+                          className="service-issues-content"
+                          style={{display: "none"}}
+                        >
+                          <hr />
+                          <p>Select specific issue for Tap / Faucet Repair</p>
+                          <ul>
+                           { item?.issue_options.map((item)=>(
+                               <li key={item?.id}>
+                              <label
+                                ><img
+                                  src="images/service-details/issues/1.jpg"
+                                  alt=""
+                                />
+                                {item?.title || "Leaking Tap"} <input type="checkbox" />
+                              </label>
+                              <div className="hover-data">
+                                Upgrade your space with a new sink installation.
+                                We handle removal, fitting, and leak-proof
+                                connections for a hassle-free experience.
+                              </div>
+                            </li>
+                           )) }
+                            {/* <li>
+                              <label
+                                ><img
+                                  src="images/service-details/issues/2.jpg"
+                                  alt="" />
+                                Tap Handle Broken <input type="checkbox"
+                              /></label>
+                              <div className="hover-data">
+                                Upgrade your space with a new sink installation.
+                                We handle removal, fitting, and leak-proof
+                                connections for a hassle-free experience.
+                              </div>
+                            </li>
+                            <li>
+                              <label
+                                ><img
+                                  src="images/service-details/issues/3.jpg"
+                                  alt="" />
+                                Low Water Pressure <input type="checkbox"
+                              /></label>
+                              <div className="hover-data">
+                                Upgrade your space with a new sink installation.
+                                We handle removal, fitting, and leak-proof
+                                connections for a hassle-free experience.
+                              </div>
+                            </li>
+                            <li>
+                              <label
+                                ><img
+                                  src="images/service-details/issues/4.jpg"
+                                  alt="" />
+                                Tap Replacement <input type="checkbox"
+                              /></label>
+                              <div className="hover-data">
+                                Upgrade your space with a new sink installation.
+                                We handle removal, fitting, and leak-proof
+                                connections for a hassle-free experience.
+                              </div>
+                            </li> */}
+                          </ul>
+                          <div className="service-issues-content-problem">
+                            <h3>Problem Description</h3>
+                           <textarea
+                        value={problemDesc}
+                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                          setProblemDesc(e.target.value)
+                        }
+                        placeholder="Describe the specific issue..."
+                      ></textarea>
+                            <h3>Uploaded Image/Video</h3>
+                            <label>
+                              <img
+                                src="images/service-details/upload-icon.svg"
+                                alt=""
+                              />
+                              Drag and drop files here, or click to browse
+                              <input type="file"
+                               multiple
+                               accept="image/*,video/*"
+                               onChange={handleFile}
+                               hidden
+                             />
+                            </label>
+                         <div className="service-issues-content-problem-thumbs">
+                          {uploadedImg.map((item, index) => (
+                            <div
+                              // key={index}
+                              className="service-issues-content-problem-thumbs-image"
+                            >
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveImage(index)}
+                              >
+                                <img
+                                  src="/images/service-details/cancel-icon.svg"
+                                  alt=""
+                                />
+                              </button>
+                               
+                              <img
+                                src={
+                                  item ||
+                                  "/images/service-details/thumb-image.svg"                                  
+                                }
+                                alt=""
+                                width={100}
+                                // hidden
+                              />
+                            </div>
+                          ))}
+                        </div>
+                              {/* <div
+                                className="service-issues-content-problem-thumbs-image"
+                              >
+                                <button type="button">
+                                  <img
+                                    src="images/service-details/cancel-icon.svg"
+                                    alt=""
+                                  />
+                                </button>
+                                <img
+                                  src="images/service-details/thumb-image.svg"
+                                  alt=""
+                                />
+                              </div> */}
+                              {/* <div
+                                className="service-issues-content-problem-thumbs-image"
+                              >
+                                <button type="button">
+                                  <img
+                                    src="images/service-details/cancel-icon.svg"
+                                    alt=""
+                                  />
+                                </button>
+                                <img
+                                  src="images/service-details/thumb-image.svg"
+                                  alt=""
+                                />
+                              </div> */}
+                              {/* <div
+                                className="service-issues-content-problem-thumbs-image"
+                              >
+                                <button type="button">
+                                  <img
+                                    src="images/service-details/cancel-icon.svg"
+                                    alt=""
+                                  />
+                                </button>
+                                <img
+                                  src="images/service-details/thumb-image.svg"
+                                  alt=""
+                                />
+                              </div> */}
+                            {/* </div> */}
+                        </div>
+                        </div>
+                          </div>
+                        
+                      ))                                          }
+                        
+                      </div>
+
 
                       {/* <div className="service-issues-in">
                         <div className="service-issues-tab">
@@ -634,6 +1010,8 @@ export default function ServiceViewDetail (){
                         </div>
                       </div> */}
                     </div>
+
+                    
                     <Link href="" onClick={handleServiceCart} className="primary-cta"
                       >Save & Add to Service Cart</Link
                     >

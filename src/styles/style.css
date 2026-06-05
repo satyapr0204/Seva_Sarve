@@ -10,7 +10,6 @@ body {
   margin: 0px;
   font-family: "Poppins", sans-serif;
 }
-
 a {
   text-decoration: none !important;
   outline: none !important;
@@ -5268,15 +5267,4 @@ div#paymentCompleted a.secondary-cta {
 
 div#importantNoticeModal .modal-dialog {
     margin-top: 65px;
-}
-
-
-.messages-type-send-in label img {
-  width: 20px;
-  height: 20px;
-}
-
-.messages-type-send-in label input[type="file"]
- {
-    display: none;
 }

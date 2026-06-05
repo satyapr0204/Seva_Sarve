@@ -1214,7 +1214,7 @@ li.list-group-item.custom-item {
 }
 .modal-content {
   border-radius: 20px;
-  padding: 0px 30px;
+  padding: 20px 30px;
 }
 .modal-body.delete-account-bdy {
   padding-left: 0;
@@ -1579,9 +1579,9 @@ li.profile-list-group div {
 }
 .left-slider-pop .carousel-indicators .active {
   background-color: var(--primary-color);
-  width: 40px;
+  width: 8px;
   height: 8px;
-  border-radius: 14px;
+  border-radius: 50%;
 }
 img.frist-img {
   height: 340px;
@@ -4900,7 +4900,6 @@ span.status.home {
         padding: 20px;
     border-radius: 15px;
     width: 100%;
-    position: relative;   /* ← add this line  by sunil*/
 }
 .choose-plan-wrp {
     display: flex;
@@ -4914,18 +4913,15 @@ span.status.home {
     box-shadow: 0px 0px 0px 2px #991318;
         position: relative;
 }
-/* .yearly-cards.active span img { by sunil */
-.yearly-cards span img {
+.yearly-cards.active span img {
     width: 15px;
     height: 15px;
 }
-/* .yearly-cards.active span { by sunil */
-.yearly-cards span {
+.yearly-cards.active span {
   background-color: var(--primary-color);
   color: var(--white);
 }
-/* .yearly-cards.active span { by sunil comment */
-.yearly-cards span {
+.yearly-cards.active span {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -5271,15 +5267,4 @@ div#paymentCompleted a.secondary-cta {
 
 div#importantNoticeModal .modal-dialog {
     margin-top: 65px;
-}
-
-
-.messages-type-send-in label img {
-  width: 20px;
-  height: 20px;
-}
-
-.messages-type-send-in label input[type="file"]
- {
-    display: none;
 }

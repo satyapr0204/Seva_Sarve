@@ -68,7 +68,7 @@ const WelcomeModal = () => {
                                 // data-bs-toggle="modal"
                                 onClick={handleExploreService}
                                 className="primary-cta"
-                                style={{ textAlign: "center", display: "flex", justifyContent: "center" }}
+                                style={{ textAlign: "center", display: "flex", justifyContent: "center",gap: "8px"   }}
                             >Explore Services
                                 <img
                                     src="images/modal/right-arrow-icon.svg"
