@@ -26,7 +26,7 @@ export default function Booking() {
     return (
         <>
             <main>
-                <div className="container home-wraper">
+                <div className="container home-wraper" style={{minHeight:'100vh'}}>
 
                     <section>
                         <div className="container">

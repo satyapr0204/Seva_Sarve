@@ -4,6 +4,7 @@ import StoreProvider from "@/store/StoreProvider";
 import QueryProvider from "@/providers/QueryProvider";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation"; // 1. IMPORTED: To watch for route transitions 
+import Script from "next/script";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import LoginModal from "@/components/modals/LoginModal";
@@ -57,11 +58,11 @@ export default function RootLayout({
       }
 
       // 3. Chain dependent plugins
-      const bootstrapScript = document.createElement("script");
-      bootstrapScript.src =
-        "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js";
-      bootstrapScript.className = "dynamic-script";
-      bootstrapScript.async = false;
+      // const bootstrapScript = document.createElement("script");
+      // bootstrapScript.src =
+      //   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js";
+      // bootstrapScript.className = "dynamic-script";
+      // bootstrapScript.async = false;
 
       const jqueryUiScript = document.createElement("script");
       jqueryUiScript.src = "https://code.jquery.com/ui/1.13.2/jquery-ui.min.js";
@@ -90,9 +91,11 @@ export default function RootLayout({
         setScriptsLoaded(true);
       };
 
-      document.head.appendChild(bootstrapScript);
+      // document.head.appendChild(bootstrapScript);
       document.head.appendChild(jqueryUiScript);
       document.head.appendChild(slickScript);
+
+      
     };
 
     document.head.appendChild(jqueryScript);
@@ -233,10 +236,15 @@ useEffect(() => {
           href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
         />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-/>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      />
+
+        <Script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          strategy="beforeInteractive"
+        />
       </head>
       <body>
         <StoreProvider>

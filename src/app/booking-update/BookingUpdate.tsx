@@ -1,8 +1,18 @@
+"use client"
+import CancelBooking from '@/components/modals/bookingmodals/CancelBooking'
+import ConfirmCancelBooking from '@/components/modals/bookingmodals/ConfirmCancelBooking'
+import ContractorRequest from '@/components/modals/bookingmodals/ContractorRequest'
+import DatePopup from '@/components/modals/bookingmodals/DatePopup'
+import NewServiceRejectionModal from '@/components/modals/bookingmodals/NewServiceRejectionModal'
+import PaymentRemainingPopup from '@/components/modals/bookingmodals/PaymentRemainingPopup'
+import RateContractorPopup from '@/components/modals/bookingmodals/RateContractorPopup'
+import RescheduleRequestSubmit from '@/components/modals/bookingmodals/RescheduleRequestSubmit'
 import Link from 'next/link'
 import React from 'react'
 
 const BookingUpdate = () => {
   return (
+    <>
     <main>
     <div className="container home-wraper my-profile" style={{height: "auto"}}>
       <section>
@@ -57,7 +67,7 @@ const BookingUpdate = () => {
 
                 <div className="vahicle-footer-btn">
                   <button className="secondary-cta">Cancel</button>
-                  <button className="primary-cta">Accept new time 1:00 PM</button>
+                  <button className="primary-cta" data-bs-target="#select-date-time-popup" data-bs-toggle="modal">Accept new time 1:00 PM</button>
                 </div>
 
 
@@ -69,7 +79,19 @@ const BookingUpdate = () => {
 
     </div>
 
-  </main>
+    </main>
+
+   <DatePopup/>
+
+      
+            <ContractorRequest/>
+            <RescheduleRequestSubmit/>
+            <PaymentRemainingPopup/>
+            <CancelBooking/>
+            <ConfirmCancelBooking/>
+            <RateContractorPopup/>
+            <NewServiceRejectionModal />
+    </>
   )
 }
 

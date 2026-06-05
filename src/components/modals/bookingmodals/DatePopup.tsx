@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from "react";
 // import { DayPicker } from "react-day-picker";
 // import "react-day-picker/style.css";
@@ -17,7 +19,6 @@ const DatePopup: React.FC = () => {
   );
 
   
-
   const timeSlots: TimeSlot[] = [
     {
       id: 1,
