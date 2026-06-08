@@ -10,6 +10,7 @@ const ViewBookingDetail = () => {
 
 const router=useRouter()
 const [showDropdown, setShowDropdown] = useState(false);
+const [showMaterialDropdown, setShowMaterialDropdown] = useState(false);
 
 useEffect(() => {
   const timer = setTimeout(() => {
@@ -29,6 +30,17 @@ useEffect(() => {
 // };
   return (
      <>
+       {/* Tiny style patch to handle standard icon rotation animations matching state */}
+       <style dangerouslySetInnerHTML={{ __html: `
+         .rotate-icon {
+           transform: rotate(180deg);
+           transition: transform 0.2s ease;
+         }
+         .dropdown-toggle-cost img, .nested-toggle img {
+           transition: transform 0.2s ease;
+         }
+       `}} />
+
        <main>
       <div className="container home-wraper my-profile" style={{height: "auto"}}>
  
@@ -53,7 +65,7 @@ useEffect(() => {
 
                     <div className="contract-left-text">
                       <h3>Your contractor is running late</h3>
-                      <p>They've requested to push your booking by <span className="hours">1h</span>.</p>
+                      <p>They've requested to push your booking by <span className="hours">1h</span>.</p>
                     </div>
                     </div>
 
@@ -64,18 +76,18 @@ useEffect(() => {
                   </div>
 
 
-                  {/* <!-- SERVICE-STATUS-SECTION --> */}
+                  {/* */}
                   <div className="service-status-wrp">
                     <h4>Service Status</h4>
                    
-                    {/* <!-- 2 --> */}
+                    {/* */}
                    <div className="service-status-inner">
                       <div className="service-status-item step-1 check">
                         <img src="images/service-status/check.svg" className="check-image" alt=""/>
                         <h5>STEP 1</h5>
                         <p>Provider Assigned</p>
                       </div>
-                      {/* <!-- <div className="progress-line step-1-fill"></div> --> */}
+                      {/* */}
                       <div className="progress-line step-fill"></div>
                       <div className="service-status-item step-2 check">
                         <img src="images/service-status/on-way.svg" alt=""/>
@@ -98,11 +110,11 @@ useEffect(() => {
                         <p>Completed</p>
                       </div>
                     </div>
-                    {/* <!-- 2 --> */}
+                    {/* */}
                   </div>
-                  {/* <!-- SERVICE-STATUS-SECTION --> */}
+                  {/* */}
 
-                  {/* <!-- Hide show data --> */}
+                  {/* */}
                    <div className="plumbing-wrp-book">
                    <div className="boking-right-img">
                      <img src="images/inner-page/booking-traking-img.svg" alt=""/>
@@ -133,38 +145,8 @@ useEffect(() => {
                         <p className="normal-text">Problem Description</p>
                         <p className="light-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         <ol className="main-category"  start={2}>
-                        {/* <!-- <hr>
-                          <li>
-                            Toilet Blockage
-                            <ul>
-                              <li>
-                                Blockage  
-                                <ul>
-                                  <li>Complete blockage</li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </li>
-                        </ol>
-                        <p className="normal-text">Problem Description</p>
-                        <p className="light-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <ol className="main-category">
-                          <li className="more-service">+ 1 more service</li> --> */}
-{/* <!-- 
-                          <div className="service-data">
-                            <li>
-                              Installation
-                              <ul>
-                                <li>
-                                  Sink Installation
-                                  <ul>
-                                    <li>Replace Existing Sink</li>
-                                  </ul>
-                                </li>
-                              </ul>
-                            </li>
-                          </div>
-                          <li className="less-service">Less service</li> --> */}
+                        {/* */}
+{/* */}
                         </ol>
                       </div>
                     </div>
@@ -199,57 +181,68 @@ useEffect(() => {
 
                    <div className="cost-details-wrp">
                     <h4>Booking Cost Details</h4>
-                    {/* <!-- <div className="cost-details-in">
-                      <p>Deposit / Deductible Amount <span>$10</span></p>
-                      <p>Remaining Cost <span>$10</span></p>
-                      <hr>
-                      <p  data-bs-target="#reviewAdditional" data-bs-toggle="modal">Total Cost <span><b>$80</b></span></p>
-                    </div> --> */}
+                    {/* */}
                     <div className="cost-details-in">
     <p>
         Deposit / Deductible Amount 
         <span>$10</span>
     </p>
 
-    {/* <!-- Additional Services Dropdown --> */}
+    {/* */}
   <div className="additional-services">
 
-    {/* <!-- Top Toggle --> */}
+    {/* */}
     <div className="drop-down-toggle">
-        {/* <p className="dropdown-toggle-cost" onClick={() => setShowDropdown(!showDropdown)}> */}
+        {/* Added state toggler to top dropdown arrow label */}
         <p
           className="dropdown-toggle-cost"
-          // className='nested-toggle'
-          // onClick={() => {
-          //   // console.log("clicked");
-          //   setShowDropdown(prev => !prev);
-          // }}
->
+          style={{ cursor: "pointer" }}
+          onClick={() => setShowDropdown(!showDropdown)}
+        >
             Additional Services Cost
-            <img src="images/header/down-icon.svg" alt=""/>
+            <img 
+              src="images/header/down-icon.svg" 
+              alt=""
+              className={showDropdown ? "rotate-icon" : ""}
+            />
         </p>
 
         <span>$20</span>
     </div>
 
  
-    {/* { showDropdown && ( */}
-      <div className="dropdown-cost-box" id="costDropdown">
+      <div 
+        className="dropdown-cost-box" 
+        id="costDropdown"
+        style={{ display: showDropdown ? "block" : "none" }}
+      >
 
         
         <div className="nested-dropdown">
 
-            <div className="nested-toggle"  >
+            {/* Added state toggler to nested sub-category click target */}
+            <div 
+              className="nested-toggle" 
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowMaterialDropdown(!showMaterialDropdown)}
+            >
                 <p>
                     Material Cost
-                    <img src="images/header/down-icon.svg" alt=""/>
+                    <img 
+                      src="images/header/down-icon.svg" 
+                      alt=""
+                      className={showMaterialDropdown ? "rotate-icon" : ""}
+                    />
                 </p>
 
                 <span>$05</span>
             </div>
 
          
-             <div className="nested-dropdown-menu">
+             <div 
+               className="nested-dropdown-menu"
+               style={{ display: showMaterialDropdown ? "block" : "none" }}
+             >
                 <ul>
     <li>
         <span className="header">Material Receipt</span>
@@ -281,14 +274,13 @@ useEffect(() => {
 
         </div>
 
-        {/* <!-- Labour --> */}
+        {/* */}
         <p>
             Labour Cost
             <span>$02</span>
         </p>
 
     </div>
-    {/* )} */}
 </div>
 
     <p>

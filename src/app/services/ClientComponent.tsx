@@ -14,17 +14,100 @@ export default function ClientComponent() {
 
   const [searchServices, setSearchServices] = useState<any>("")
 
+  // Restores immediate mounting slick sliders on navigation transitions safely
+  useEffect(() => {
+    const $ = (window as any).$;
+    if (!$) return;
+
+    const initServicesSliders = () => {
+      if ($(".top-services-slider").length && !$(".top-services-slider").hasClass("slick-initialized") && filterTopServices.length > 0) {
+        $(".top-services-slider").slick({
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          arrows: true,
+          dots: false,
+          draggable: false,
+          infinite: filterTopServices.length > 4, // Fix infinite loop if items are less than slides
+          autoplay: false,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+          ]
+        });
+      }
+
+      if ($(".featured-category-slider").length && !$(".featured-category-slider").hasClass("slick-initialized") && filterfeaturedCategory.length > 0) {
+        $(".featured-category-slider").slick({
+          slidesToShow: 8,
+          slidesToScroll: 1,
+          arrows: true,
+          dots: false,
+          draggable: false,
+          infinite: filterfeaturedCategory.length > 8,
+          autoplay: false,
+          responsive: [
+            {
+              breakpoint: 1439,
+              settings: {
+                slidesToShow: 6
+              }
+            }, 
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 5
+              }
+            },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+          ]
+        });
+      }
+    };
+
+    setTimeout(initServicesSliders, 50);
+
+    return () => {
+      // Safe teardown before running calculations
+      if ($(".top-services-slider").hasClass("slick-initialized")) {
+        $(".top-services-slider").slick("unslick");
+      }
+      if ($(".featured-category-slider").hasClass("slick-initialized")) {
+        $(".featured-category-slider").slick("unslick");
+      }
+    };
+  }, [filterTopServices, filterfeaturedCategory]);
 
   useEffect(() => {
+    const $ = (window as any).$;
+    
+    // CRITICAL: Force destroy slider instances cleanly right before changing lists
+    if ($) {
+      if ($(".top-services-slider").hasClass("slick-initialized")) {
+        $(".top-services-slider").slick("unslick");
+      }
+      if ($(".featured-category-slider").hasClass("slick-initialized")) {
+        $(".featured-category-slider").slick("unslick");
+      }
+    }
+
     setFilteredServices(handlefilter(topServices));
-
-    setFilteredfeaturedCategory(
-      handlefilter(featuredCategory)
-    );
-
-    setFilteredAllServices(
-      handlefilter(allServices)
-    );
+    setFilteredfeaturedCategory(handlefilter(featuredCategory));
+    setFilteredAllServices(handlefilter(allServices));
   }, [
     searchServices,
     topServices,
@@ -36,14 +119,46 @@ export default function ClientComponent() {
     return data.filter((item) =>
       item?.title
         ?.toLowerCase()
-        .includes(searchServices.toLowerCase())
+        ?.includes(searchServices.toLowerCase())
     );
   };
 
   return (
     <>
+      {/* Dynamic structural system wrapper protection layout to maintain native styles layout */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .top-services-slider:not(.slick-initialized),
+            .featured-category-slider:not(.slick-initialized) {
+              display: flex !important;
+              overflow: hidden;
+              gap: 15px;
+            }
+            .top-services-slider:not(.slick-initialized) .top-services-slider-item {
+              flex: 0 0 auto !important;
+              width: 24%;
+            }
+            .featured-category-slider:not(.slick-initialized) .featured-category-slider-item {
+              flex: 0 0 auto !important;
+              width: 12%;
+            }
+            @media (max-width: 1024px) {
+              .top-services-slider:not(.slick-initialized) .top-services-slider-item { width: 49%; }
+              .featured-category-slider:not(.slick-initialized) .featured-category-slider-item { width: 20%; }
+            }
+            @media (max-width: 767px) {
+              .top-services-slider:not(.slick-initialized) .top-services-slider-item,
+              .featured-category-slider:not(.slick-initialized) .featured-category-slider-item {
+                width: 100%;
+              }
+            }
+          `,
+        }}
+      />
+
       <main>
-        <div className="container home-wraper my-profile" style={{ height: " auto" }}>
+        <div className="container home-wraper my-profile" style={{ height: "auto" }}>
           <section>
             <div className="container">
               <div className="row">
@@ -58,7 +173,7 @@ export default function ClientComponent() {
                           }}><img src="images/home/left-arrow.svg" alt="" /></a>
                         Services
                       </h2>
-                      <div className="your-location-top">
+                      <div className="your-location-top" >
 
                         <input type="text"
                           placeholder="Search"
@@ -127,7 +242,7 @@ export default function ClientComponent() {
                       </div>
                     </div>
                     <div className="services-sec-wrp">
-                      <h3>All Services</h3>
+                      <h3 style={{padding:'10px'}}>All Services</h3>
                       <div className="services-sec-in">
 
                         {filertallServices.map((item) => (

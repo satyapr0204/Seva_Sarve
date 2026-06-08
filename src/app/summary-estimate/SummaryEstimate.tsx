@@ -58,7 +58,7 @@ const SummaryEstimate = () => {
                          <Link href="/serviceDetails"><img src="images/inner-page/edit-icon-c.svg" alt=""/></Link>
                         </div>
                         <h4>{ estimationDetails?.issue?.title||"Tap / Faucet Installation"}</h4>
-                       { estimationDetails?.issue?.tags.map((item,index)=>(
+                       { estimationDetails?.issue?.tags.map((item:any,index:number)=>(
                              <span className="primary-cta tap" key={index}>{item||"Tap Handle Broken"}</span>
                        ))}
                     </div>

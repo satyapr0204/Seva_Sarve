@@ -5,7 +5,6 @@
       "banner_title": "Expert Plumbing Services",
       "banner_subtitle": "Fast • Reliable • Verified Contractors"
     },
-
     "sub_categories": [
       {
         "id": 1,
@@ -23,54 +22,66 @@
         "active": false
       }
     ],
-
     "facingIssues": [
       {
+        "id": "issue_101",
+        "sub_category_id": 1,
         "issue_type": {
-          "title": "Tap / Faucet Installation",
-          "description": "Fix or install faucets in kitchen, bathroom, or wash area.",
-          "icon": "tap-installation.png"
+          "title": "Tap / Faucet Repair",
+          "description": "Fix leaks, drips, or internal valve structural defects in kitchen or wash area.",
+          "icon": "images/service-details/service-issue.svg"
         },
-
         "issue_options": [
           {
             "id": 1,
-            "title": "Joint tap",
-            "image": "joint-tap.png",
-            "selected": false
+            "title": "Leaking Tap",
+            "image": "images/service-details/issues/1.jpg"
           },
           {
             "id": 2,
-            "title": "Tap handle broken",
-            "image": "tap-handle.png",
-            "selected": true,
-            "warning_message": "Upgrade your space with a new sink installation service from a trusted local plumber."
+            "title": "Tap Handle Broken",
+            "image": "images/service-details/issues/2.jpg"
           }
-        ],
-
-        "problem_description": {
-          "label": "Problem Description",
-          "placeholder": "Describe the specific issue..."
+        ]
+      },
+      {
+        "id": "issue_102",
+        "sub_category_id": 1,
+        "issue_type": {
+          "title": "Low Water Pressure Problems",
+          "description": "Diagnose and resolve pressure drop lines across your piping valves.",
+          "icon": "images/service-details/service-issue.svg"
         },
-
-        "upload_section": {
-          "title": "Uploaded Image/Video",
-          "upload_text": "Drag and drop files here, or click to browse",
-
-          "uploaded_files": [
-            {
-              "id": 1,
-              "type": "image",
-              "file_name": "plumbing-1.jpg",
-              "preview": "plumbing-1.jpg"
-            }
-          ]
-        }
+        "issue_options": [
+          {
+            "id": 3,
+            "title": "Low Water Pressure",
+            "image": "images/service-details/issues/3.jpg"
+          }
+        ]
+      },
+      {
+        "id": "issue_201",
+        "sub_category_id": 2,
+        "issue_type": {
+          "title": "Tap / Faucet Installation",
+          "description": "Fix or install faucets in kitchen, bathroom, or wash area.",
+          "icon": "images/service-details/service-issue.svg"
+        },
+        "issue_options": [
+          {
+            "id": 4,
+            "title": "Joint tap",
+            "image": "images/service-details/issues/1.jpg"
+          },
+          {
+            "id": 5,
+            "title": "Tap Replacement",
+            "image": "images/service-details/issues/4.jpg"
+          }
+        ]
       }
     ],
-
-    
-
     "additional_services": [
       {
         "id": 1,
@@ -81,56 +92,55 @@
       }
     ]
   },
-  "estimation":{
-  "category": {
-    "id": 1,
-    "name": "Plumbing"
-  },
-  "subcategory": {
-    "id": 12,
-    "name": "Installations"
-  },
-  "issue": {
-    "id": 101,
-    "title": "Tap / Faucet Installation",
-    "tags": [
-      "Tap Handle Broken",
-      "Tap Handle Broken"
-    ]
-  },
-  "problem_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "uploaded_media": [
-    {
+  "estimation": {
+    "category": {
       "id": 1,
-      "type": "image",
-      "url": "images/inner-page/issue-icon.svg"
+      "name": "Plumbing"
     },
-    {
-      "id": 2,
-      "type": "image",
-      "url": "images/inner-page/issue-icon.svg"
+    "subcategory": {
+      "id": 12,
+      "name": "Installations"
     },
-    {
-      "id": 3,
-      "type": "image",
-      "url": "images/inner-page/issue-icon.svg"
+    "issue": {
+      "id": 101,
+      "title": "Tap / Faucet Installation",
+      "tags": [
+        "Tap Handle Broken",
+        "Tap Handle Broken"
+      ]
     },
-    {
-      "id": 4,
-      "type": "image",
-      "url": "images/inner-page/issue-icon.svg"
+    "problem_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "uploaded_media": [
+      {
+        "id": 1,
+        "type": "image",
+        "url": "images/inner-page/issue-icon.svg"
+      },
+      {
+        "id": 2,
+        "type": "image",
+        "url": "images/inner-page/issue-icon.svg"
+      },
+      {
+        "id": 3,
+        "type": "image",
+        "url": "images/inner-page/issue-icon.svg"
+      },
+      {
+        "id": 4,
+        "type": "image",
+        "url": "images/inner-page/issue-icon.svg"
+      }
+    ],
+    "estimate": {
+      "minimum": 149,
+      "maximum": 299,
+      "average_cost": 224,
+      "currency": "$"
+    },
+    "actions": {
+      "save_add_more": true,
+      "save_add_to_cart": true
     }
-  ],
-  "estimate": {
-    "minimum": 149,
-    "maximum": 299,
-    "average_cost": 224,
-    "currency": "$"
-  },
-  "actions": {
-    "save_add_more": true,
-    "save_add_to_cart": true
   }
 }
-}
-
