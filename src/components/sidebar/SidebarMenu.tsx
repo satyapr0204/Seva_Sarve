@@ -7,19 +7,30 @@ import React from 'react';
 const SidebarMenu = () => {
   const router = useRouter();
 
-  // Helper function to cleanly close the Bootstrap sidebar menu right before navigating
+  // Helper function to cleanly close BOTH the offcanvas sidebar and the mobile header panel
   const handleLinkClick = () => {
+    const bootstrap = (window as any).bootstrap;
+
+    // 1. CLOSE THE OFFCANVAS SIDEBAR PANEL
     const offcanvasElement = document.getElementById('home-end-offcanvasRight');
-    if (offcanvasElement) {
-      const bootstrap = (window as any).bootstrap;
-      if (bootstrap && bootstrap.Offcanvas) {
-        // Fetch or initialize the Bootstrap Offcanvas programmatic instance
-        const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement) 
-          || new bootstrap.Offcanvas(offcanvasElement);
-        
-        // Hide the sidebar menu cleanly (this also cleans up the dark background overlay)
-        offcanvasInstance.hide();
-      }
+    if (offcanvasElement && bootstrap?.Offcanvas) {
+      const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement) 
+        || new bootstrap.Offcanvas(offcanvasElement);
+      offcanvasInstance.hide();
+    }
+
+    // 2. FIXED: CLOSE THE RESPONSIVE MOBILE HEADER
+    // Targets both 'show' and your custom 'showData' classes to make sure it closes completely
+    const rightSection = document.querySelector(".right-section");
+    if (rightSection) {
+      rightSection.classList.remove("showData");
+      rightSection.classList.remove("show");
+    }
+
+    // 3. RESET THE TOGGLE HAMBURGER ICON BACK TO BARS
+    const barCrossIcon = document.getElementById("bar-cross");
+    if (barCrossIcon) {
+      barCrossIcon.className = "fa-solid fa-bars";
     }
   };
 
@@ -35,7 +46,7 @@ const SidebarMenu = () => {
         </button>
       </div>
       <div className="offcanvas-body custom-home-list">
-        {/* Added the onClick handler here to catch any link selection clicks instantly */}
+        {/* Captures clicks on any list option to clear active structural layouts */}
         <ul onClick={handleLinkClick}>
           <li><Link href="/">Home</Link></li>
           <li><Link href="/services">Services</Link></li>
@@ -44,7 +55,6 @@ const SidebarMenu = () => {
           <li><Link href="/my-payment">My Payments</Link></li>
           <li><Link href="/choose-plan">Subscription</Link></li>
           <li><Link href="/saved-address">Saved Address</Link></li>
-          {/* Kept your exact modal trigger configuration untouched for the logout action */}
           <li><Link href="#logout-popup" data-bs-toggle="modal">Logout</Link></li>
         </ul>
       </div>

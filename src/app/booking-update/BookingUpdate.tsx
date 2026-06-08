@@ -67,9 +67,8 @@ const BookingUpdate = () => {
 
                 <div className="vahicle-footer-btn">
                   <button className="secondary-cta">Cancel</button>
-                  <button className="primary-cta" data-bs-target="#select-date-time-popup" data-bs-toggle="modal">Accept new time 1:00 PM</button>
+                  <button className="primary-cta" >Accept new time 1:00 PM</button>
                 </div>
-
 
               </div>
             </div>

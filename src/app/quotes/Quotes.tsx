@@ -419,24 +419,26 @@ const [expandedAdditional, setExpandedAdditional] = useState<Record<number, bool
                                                     <li>{item.services?.[0]?.sub_service}</li>
                                                   
                                                 </ul>
-                                                   <li 
-                                    // className="less-service" 
-                                    // style={{ cursor: 'pointer', color: 'red', fontWeight: 'bold' }} 
-                                    onClick={() => setExpandedQuotes(prev => ({ ...prev, [index]: false }))}
-                                >
-                                    Less service
-                                </li>
+                                         
                                             </li>
 
                                         </ul>
                                       
                                     </li>
                                          
-
+                                   <li 
+                                    // className="less-service" 
+                                    style={{ cursor: 'pointer', fontWeight: 'bold' }} 
+                                    onClick={() => setExpandedQuotes(prev => ({ ...prev, [index]: false }))}
+                                >
+                                    Less service
+                                </li>
                                  
                                 </div>
                             )}
                         </ol>
+
+                               
 
                         {/* ADDITIONAL SERVICES TOGGLE BLOCK */}
                         <div className="additional-services">

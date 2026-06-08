@@ -3,7 +3,7 @@
 import StoreProvider from "@/store/StoreProvider";
 import QueryProvider from "@/providers/QueryProvider";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation"; // 1. IMPORTED: To watch for route transitions 
+import { usePathname } from "next/navigation"; 
 import Script from "next/script";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
@@ -27,24 +27,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [scriptsLoaded, setScriptsLoaded] = useState(false);
-  const pathname = usePathname(); // 2. CAPTURED: Tracks current path change
+  const pathname = usePathname(); 
 
   useEffect(() => {
-
+    // Clean up stuck backgrounds and freeze-states across route navigations
     document
-    .querySelectorAll(".offcanvas-backdrop, .modal-backdrop")
-    .forEach((el) => el.remove());
+      .querySelectorAll(".offcanvas-backdrop, .modal-backdrop")
+      .forEach((el) => el.remove());
 
-  document.body.classList.remove("modal-open");
-  document.body.style.overflow = "";
-  document.body.style.paddingRight = "";
+    document.body.classList.remove("modal-open");
+    document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
 
-    // Clean up any previously appended script instances on path change
-    // to prevent piling up dozens of duplicate script nodes in the <head>
+    // Clean up previous script blocks to prevent stacking nodes in <head>
     const existingCustomScripts = document.querySelectorAll(".dynamic-script");
     existingCustomScripts.forEach((script) => script.remove());
 
-    // 1. Create and inject jQuery Core
+    // 1. Inject jQuery Core
     const jqueryScript = document.createElement("script");
     jqueryScript.src = "/js/jquery.min.js";
     jqueryScript.className = "dynamic-script";
@@ -58,12 +57,6 @@ export default function RootLayout({
       }
 
       // 3. Chain dependent plugins
-      // const bootstrapScript = document.createElement("script");
-      // bootstrapScript.src =
-      //   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js";
-      // bootstrapScript.className = "dynamic-script";
-      // bootstrapScript.async = false;
-
       const jqueryUiScript = document.createElement("script");
       jqueryUiScript.src = "https://code.jquery.com/ui/1.13.2/jquery-ui.min.js";
       jqueryUiScript.className = "dynamic-script";
@@ -82,7 +75,8 @@ export default function RootLayout({
         progressScript.type = "module";
 
         const customScript = document.createElement("script");
-        customScript.src = `/js/custom.js?v=${Date.now()}`; // Added cache-buster to instantly bust hard browser caching
+        // Added a timestamp cache-buster to ensure clean re-execution of script events
+        customScript.src = `/js/custom.js?v=${Date.now()}`; 
         customScript.className = "dynamic-script";
         customScript.type = "module";
 
@@ -91,137 +85,128 @@ export default function RootLayout({
         setScriptsLoaded(true);
       };
 
-      // document.head.appendChild(bootstrapScript);
       document.head.appendChild(jqueryUiScript);
       document.head.appendChild(slickScript);
-
-      
     };
 
     document.head.appendChild(jqueryScript);
-  }, []); // 3. FIXED: Re-executes scripts cleanly whenever user switches pages!
+  }, [pathname]); // FIXED: Re-injects and re-binds your custom.js core events whenever a user switches pages!
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setTimeout(() => {
+        const $ = (window as any).$;
+        if (!$) return;
 
-useEffect(() => {
-
-  if (typeof window !== "undefined") {
-
-    setTimeout(() => {
-
-      const $ = (window as any).$;
-
-      if (!$) return;
-
-      // Hero Slider
-      if (
-        $(".hero-slider").length &&
-        !$(".hero-slider").hasClass("slick-initialized")
-      ) {
-        $(".hero-slider").slick({
-          infinite: true,
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          arrows: false,
-          dots: true,
-          autoplay: true,
-          responsive: [
-            {
-              breakpoint: 767,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
+        // Hero Slider
+        if (
+          $(".hero-slider").length &&
+          !$(".hero-slider").hasClass("slick-initialized")
+        ) {
+          $(".hero-slider").slick({
+            infinite: true,
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            arrows: false,
+            dots: true,
+            autoplay: true,
+            responsive: [
+              {
+                breakpoint: 767,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                },
               },
-            },
-          ],
-        });
-      }
+            ],
+          });
+        }
 
-      // Upcoming Slider
-      if (
-        $(".upcoming-slider").length &&
-        !$(".upcoming-slider").hasClass("slick-initialized")
-      ) {
-        $(".upcoming-slider").slick({
-          dots: false,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 1,
-          centerMode: true,
-          autoplay: true,
-          arrows: false,
-          variableWidth: true,
-        });
-      }
+        // Upcoming Slider
+        if (
+          $(".upcoming-slider").length &&
+          !$(".upcoming-slider").hasClass("slick-initialized")
+        ) {
+          $(".upcoming-slider").slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            centerMode: true,
+            autoplay: true,
+            arrows: false,
+            variableWidth: true,
+          });
+        }
 
-      if (
-        $(".top-services-slider").length &&
-        !$(".top-services-slider").hasClass("slick-initialized")
-      ) {
-        $(".top-services-slider").slick({
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          arrows: true,
-          dots: false,
-          draggable: false,
-          infinite: true,
-          autoplay: false,
-          responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 2,
+        // Top Services Slider
+        if (
+          $(".top-services-slider").length &&
+          !$(".top-services-slider").hasClass("slick-initialized")
+        ) {
+          $(".top-services-slider").slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            arrows: true,
+            dots: false,
+            draggable: false,
+            infinite: true,
+            autoplay: false,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 2,
+                },
               },
-            },
-            {
-              breakpoint: 767,
-              settings: {
-                slidesToShow: 1,
+              {
+                breakpoint: 767,
+                settings: {
+                  slidesToShow: 1,
+                },
               },
-            },
-          ],
-        });
-      }
+            ],
+          });
+        }
 
-
-      if (
-        $(".featured-category-slider").length &&
-        !$(".featured-category-slider").hasClass("slick-initialized")
-      ) {
-        $(".featured-category-slider").slick({
-          slidesToShow: 8,
-          slidesToScroll: 1,
-          arrows: true,
-          dots: false,
-          draggable: false,
-          infinite: true,
-          autoplay: false,
-          responsive: [
-            {
-              breakpoint: 1439,
-              settings: {
-                slidesToShow: 6,
+        // Featured Category Slider
+        if (
+          $(".featured-category-slider").length &&
+          !$(".featured-category-slider").hasClass("slick-initialized")
+        ) {
+          $(".featured-category-slider").slick({
+            slidesToShow: 8,
+            slidesToScroll: 1,
+            arrows: true,
+            dots: false,
+            draggable: false,
+            infinite: true,
+            autoplay: false,
+            responsive: [
+              {
+                breakpoint: 1439,
+                settings: {
+                  slidesToShow: 6,
+                },
               },
-            },
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 5,
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 5,
+                },
               },
-            },
-            {
-              breakpoint: 767,
-              settings: {
-                slidesToShow: 1,
+              {
+                breakpoint: 767,
+                settings: {
+                  slidesToShow: 1,
+                },
               },
-            },
-          ],
-        });
-      }
-
-    }, 300);
-  }
-
-}, [pathname]);
+            ],
+          });
+        }
+      }, 300);
+    }
+  }, [pathname]);
 
   return (
     <html lang="en">
@@ -235,12 +220,10 @@ useEffect(() => {
           rel="stylesheet"
           href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
         />
-
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      />
-
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
         <Script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
           strategy="beforeInteractive"
@@ -249,7 +232,7 @@ useEffect(() => {
       <body>
         <StoreProvider>
           <QueryProvider>
-           <Header />
+            <Header />
             {children}
             <Footer />
 
@@ -265,15 +248,10 @@ useEffect(() => {
             <DeleteAccountModal />
             <DeleteMyAccountModal />
             <NewServiceRejectionModal />
-            <RateSevaServe 
-            feedback={"abcdefghijklmnopqrstuvwxyz"}
-            />
-
-            
-            </QueryProvider>
+            <RateSevaServe feedback={"abcdefghijklmnopqrstuvwxyz"} />
+          </QueryProvider>
         </StoreProvider>
         <Toaster position="top-right" />
-
       </body>
     </html>
   );
