@@ -13,8 +13,21 @@ export default function Quotes() {
 
     const [activeTab, setActiveTab] = useState("received");
     const [quotesDataAll, setQuotesData] = useState<any>(quotesData);
+   
+    const [expandService,setExpandService]=useState<boolean>(false)
+
+        // const toggleExpand = (index: number) => {
+        //     setExpandedQuotes((prev) => ({
+        //         ...prev,
+        //         [index]: !prev[index], // Flip the true/false value for this specific item index
+        //     }));
+        // };
 
      let quotes=quotesDataAll?.[activeTab] ||[]
+
+     // Put this inside your component, right above your return statement
+const [expandedQuotes, setExpandedQuotes] = useState<Record<number, boolean>>({});
+const [expandedAdditional, setExpandedAdditional] = useState<Record<number, boolean>>({});
     return (
         <>
             <main>
@@ -337,146 +350,185 @@ export default function Quotes() {
                                                 </div>
 
                                             </div> */}
+<div className="tab-content" id="customTabs-tabContent">
+    {quotes?.map((item: any, index: number) => {
+        const isServicesOpen = !!expandedQuotes[index];
+        const isAdditionalOpen = !!expandedAdditional[index];
 
-                                            <div className="tab-content" id="customTabs-tabContent">
-                                            {quotes?.map((item: any, index: number) => (
-                                                <div className="my-quotes-inner" key={index}>
+        return (
+            <div className="my-quotes-inner" key={index}>
 
-                                                <div className="add-user">
-                                                    <p className="left">#{item.quote_id}</p>
+                <div className="add-user">
+                    <p className="left">#{item.quote_id}</p>
 
-                                                    {item.status && (
-                                                    <p className="right">{item.status}</p>
-                                                    )}
-                                                </div>
+                    {item.status && (
+                        <p className="right">{item.status}</p>
+                    )}
+                </div>
 
-                                                <div className="plumbing">
-                                                    <p className="plm">
-                                                    {item.category}
-                                                    <img src="images/home/up-right-arrow.svg" alt="" />
-                                                    </p>
+                <div className="plumbing">
+                    <p className="plm">
+                        {item.category}
+                        <img src="images/home/up-right-arrow.svg" alt="" />
+                    </p>
 
-                                                    <p className="sub-cate">Sub categories Selected</p>
+                    <p className="sub-cate">Sub categories Selected</p>
 
-                                                    <div className="service-list-type">
+                    <div className="service-list-type">
 
-                                                    {/* MAIN SERVICES */}
-                                                    <ol className="main-category">
-                                                        {item.services?.map((srv: any, i: number) => (
-                                                        <li key={i}>
-                                                            {srv.category}
-                                                            <ul>
-                                                            <li>
-                                                                {srv.service}
-                                                                <ul>
-                                                                <li>{srv.sub_service}</li>
-                                                                </ul>
-                                                            </li>
-                                                            </ul>
-                                                        </li>
-                                                        ))}
-                                                    </ol>
+                        {/* MAIN SERVICES */}
+                        <ol className="main-category">
+                            {item.services?.map((srv: any, i: number) => (
+                                <li key={i}>
+                                    {srv.category}
+                                    <ul>
+                                        <li>
+                                            {srv.service}
+                                            <ul>
+                                                <li>{srv.sub_service}</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            ))}
+                        </ol>
 
-                                                    {/* YOUR "MORE SERVICE" STATIC BLOCK (kept same style) */}
-                                                    <ol className="main-category">
-                                                        <li className="more-service">+ 1 more service</li>
+                        {/* MORE / LESS SERVICES BLOCK */}
+                        <ol className="main-category">
+                            {/* 1. Toggle Button Option */}
+                            {!isServicesOpen &&  (
+                                <li 
+                                    className="more-service" 
+                                    style={{ cursor: 'pointer' }} 
+                                    onClick={() => setExpandedQuotes(prev => ({ ...prev, [index]: true }))}
+                                >
+                                    + 1 more service
+                                </li>
+                            ) 
+                            }
 
-                                                        <div className="service-data">
-                                                        <li>
-                                                            {item.services?.[0]?.category}
-                                                            <ul>
-                                                            <li>
-                                                                {item.services?.[0]?.service}
-                                                                <ul>
-                                                                <li>{item.services?.[0]?.sub_service}</li>
-                                                                </ul>
-                                                            </li>
-                                                            </ul>
-                                                        </li>
-                                                        </div>
+                            {/* 2. Expanded Content Block (Keeps your exact UI classes) */}
+                            {isServicesOpen && (
+                                <div className="service-data" style={{ display: 'block', marginTop: '10px' }}>
+                                    <li>
+                                        {item.services?.[0]?.category}
+                                        <ul>
+                                            <li>
+                                                {item.services?.[0]?.service}
+                                                <ul>
+                                                    <li>{item.services?.[0]?.sub_service}</li>
+                                                  
+                                                </ul>
+                                                   <li 
+                                    // className="less-service" 
+                                    // style={{ cursor: 'pointer', color: 'red', fontWeight: 'bold' }} 
+                                    onClick={() => setExpandedQuotes(prev => ({ ...prev, [index]: false }))}
+                                >
+                                    Less service
+                                </li>
+                                            </li>
 
-                                                        <li className="less-service">Less service</li>
-                                                    </ol>
+                                        </ul>
+                                      
+                                    </li>
+                                         
 
-                                                    {/* ADDITIONAL SERVICES */}
-                                                    <div className="additional-services">
-                                                        <p className="additional-text">
-                                                        Additional Services
-                                                        <img src="images/home/additional-service.svg" alt="" />
-                                                        </p>
+                                 
+                                </div>
+                            )}
+                        </ol>
 
-                                                        <ul className="service-list">
-                                                        {item.additional_services?.map((srv: string, i: number) => (
-                                                            <li key={i}>{srv}</li>
-                                                        ))}
-                                                        </ul>
-                                                    </div>
+                        {/* ADDITIONAL SERVICES TOGGLE BLOCK */}
+                        <div className="additional-services">
+                            <p 
+                                className="additional-text" 
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => setExpandedAdditional(prev => ({ ...prev, [index]: !isAdditionalOpen }))}
+                            >
+                                Additional Services {!isAdditionalOpen ? '(Show)' : '(Hide)'}
+                                <img src="images/home/additional-service.svg" alt="" />
+                            </p>
 
-                                                    <p>{item.description}</p>
+                            <ul 
+                                className="service-list" 
+                                style={{ display: isAdditionalOpen ? 'block' : 'none' }}
+                            >
+                                {item.additional_services?.map((srv: string, i: number) => (
+                                    <li key={i}>{srv}</li>
+                                ))}
+                            </ul>
+                        </div>
 
-                                                    <div className="service-quotes">
-                                                        <p className="service-cost">
-                                                        Cost:<span>${item.cost}</span>
-                                                        </p>
+                        <p>{item.description}</p>
 
-                                                        <div className="home-quotes-cta">
+                        <div className="service-quotes">
+                            <p className="service-cost">
+                                Cost:<span>${item.cost}</span>
+                            </p>
 
-                                                        {/* RECEIVED */}
-                                                        {activeTab === "received" && (
-                                                            <>
-                                                            <button
-                                                                className="reject-btn"
-                                                                data-bs-target="#servicesRejection"
-                                                                data-bs-toggle="modal"
-                                                            >
-                                                                Reject
-                                                            </button>
+                            <div className="home-quotes-cta">
 
-                                                            <a
-                                                                className="primary-cta rgt"
-                                                                data-bs-target="#servicesAccepted"
-                                                                data-bs-toggle="modal"
-                                                            >
-                                                                Accept
-                                                                <img src="images/home/right-img.svg" alt="" />
-                                                            </a>
-                                                            </>
-                                                        )}
+                                {/* RECEIVED */}
+                                {activeTab === "received" && (
+                                    <>
+                                        <button
+                                            className="reject-btn"
+                                            data-bs-target="#servicesRejection"
+                                            data-bs-toggle="modal"
+                                        >
+                                            Reject
+                                        </button>
 
-                                                        {/* REQUESTED */}
-                                                        {activeTab === "requested" && (
-                                                            <>
-                                                            <button  className="reject-btn"
-                                                                data-bs-target="#servicesRejection"
-                                                                data-bs-toggle="modal">Reject</button>
-                                                                
-                                                            <button className="primary-cta rgt" onClick={() => router.push("/serviceDetails")}>
-                                                                Edit Req.
-                                                            </button>
-                                                            </>
-                                                        )}
+                                        <a
+                                            className="primary-cta rgt"
+                                            data-bs-target="#servicesAccepted"
+                                            data-bs-toggle="modal"
+                                        >
+                                            Accept
+                                            <img src="images/home/right-img.svg" alt="" />
+                                        </a>
+                                    </>
+                                )}
 
-                                                        {/* ACCEPTED */}
-                                                        {activeTab === "accepted" && (
-                                                            <button className="primary-cta rgt">
-                                                            <img
-                                                                className="download"
-                                                                src="images/inner-page/download-down-arrow.svg"
-                                                                alt=""
-                                                            />
-                                                            Download PDF
-                                                            </button>
-                                                        )}
+                                {/* REQUESTED */}
+                                {activeTab === "requested" && (
+                                    <>
+                                        <button  
+                                            className="reject-btn"
+                                            data-bs-target="#servicesRejection"
+                                            data-bs-toggle="modal"
+                                        >
+                                            Reject
+                                        </button>
+                                        
+                                        <button className="primary-cta rgt" onClick={() => router.push("/serviceDetails")}>
+                                            Edit Req.
+                                        </button>
+                                    </>
+                                )}
 
-                                                        </div>
-                                                    </div>
+                                {/* ACCEPTED */}
+                                {activeTab === "accepted" && (
+                                    <button className="primary-cta rgt">
+                                        <img
+                                            className="download"
+                                            src="images/inner-page/download-down-arrow.svg"
+                                            alt=""
+                                        />
+                                        Download PDF
+                                    </button>
+                                )}
 
-                                                    </div>
-                                                </div>
+                            </div>
+                        </div>
 
-                                                </div>
-                                            ))}
-                                            </div>
+                    </div>
+                </div>
+
+            </div>
+        );
+    })}
+</div>
                                         </div>
                                     </div>
                                 </div>

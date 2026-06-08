@@ -61,6 +61,22 @@
         ]
       },
       {
+        "id": "issue_103",
+        "sub_category_id": 1,
+        "issue_type": {
+          "title": "Low Water Pressure Problems",
+          "description": "Diagnose and resolve pressure drop lines across your piping valves.",
+          "icon": "images/service-details/service-issue.svg"
+        },
+        "issue_options": [
+          {
+            "id": 3,
+            "title": "Low Water Pressure",
+            "image": "images/service-details/issues/3.jpg"
+          }
+        ]
+      },
+      {
         "id": "issue_201",
         "sub_category_id": 2,
         "issue_type": {
@@ -80,7 +96,29 @@
             "image": "images/service-details/issues/4.jpg"
           }
         ]
+      },
+      {
+        "id": "issue_301",
+        "sub_category_id": 3,
+        "issue_type": {
+          "title": "Tap / Faucet Installation",
+          "description": "Fix or install faucets in kitchen, bathroom, or wash area.",
+          "icon": "images/service-details/service-issue.svg"
+        },
+        "issue_options": [
+          {
+            "id": 4,
+            "title": "Joint tap",
+            "image": "images/service-details/issues/1.jpg"
+          },
+          {
+            "id": 5,
+            "title": "Tap Replacement",
+            "image": "images/service-details/issues/4.jpg"
+          }
+        ]
       }
+
     ],
     "additional_services": [
       {

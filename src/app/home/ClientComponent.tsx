@@ -158,7 +158,7 @@ $('.service-list-type .less-service').off('click').on('click', function (e:any) 
           </section>
 
           <section>
-            <div className="container" onClick={() => router.push("/view-booking-detail")}>
+            <div className="container" onClick={() => router.push("/view-booking-detail")} style={{cursor:"pointer"}}>
               <div className="row">
                 <div className="col-lg-12">
                   <div className="pipe-leakage">
@@ -366,23 +366,51 @@ $('.service-list-type .less-service').off('click').on('click', function (e:any) 
                         </Link>
                       </p>
                     </div>
-                    <div className="upcoming-slider">
-                      {[0, 1, 2, 3, 4, 5].map((item, index) => (
-                        <div className="upcoming-my-slide" key={index}>
-                          <div className="upcoming-img">
-                            <img src="images/home/home-slider/1.svg" alt="" />
-                          </div>
-                          <div className="upcoming-data">
-                            <p className="up-text">Plumbing - Pipe Leakage Repair</p>
-                            <div className="upcm-slider-btn pop-srv">
-                              <button className="primary-cta upcm-btn pop-srv-btn" onClick={() => router.push("/quotes")}>
-                                Request Exact Quote
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+ <div 
+  className="upcoming-slider"
+  /* FIX: Event delegation. The parent container listens for clicks on ANY card, 
+     even if the slider library completely cloned and duplicated it! */
+  onClick={(e) => {
+    const target = e.target as HTMLElement;
+    // Find the closest slide wrapper that has our custom route attribute
+    const slide = target.closest('[data-route]');
+    if (slide) {
+      e.stopPropagation();
+      router.push("/quotes");
+    }
+  }}
+>
+  {[0, 1, 2, 3, 4, 5].map((item, index) => (
+    <div 
+      className="upcoming-my-slide" 
+      key={index}
+      /* Attach a plain string attribute that stays intact even when cloned by jQuery/Vanilla scripts */
+      data-route="/quotes"
+      style={{ 
+        cursor: 'pointer',
+        position: 'relative',
+        zIndex: 999,
+        pointerEvents: 'auto'
+      }}
+    >
+      <div className="upcoming-img">
+        <img src="images/home/home-slider/1.svg" alt="" />
+      </div>
+      <div className="upcoming-data">
+        <p className="up-text">Plumbing - Pipe Leakage Repair</p>
+        <div className="upcm-slider-btn pop-srv">
+          <button 
+            className="primary-cta upcm-btn pop-srv-btn" 
+            style={{ pointerEvents: 'none' }} // Let clicks pass through to the card data-route wrapper
+            tabIndex={-1}
+          >
+            Request Exact Quote
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
                   </div>
                 </div>
               </div>
