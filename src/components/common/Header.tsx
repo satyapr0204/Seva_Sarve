@@ -34,7 +34,8 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <>
+    
       <header className="header">
         <div className="left-section">
           <Link href="/"><img src="/images/header/logo.svg" alt="Logo" className="logo" /></Link>
@@ -131,7 +132,8 @@ const Header = () => {
           <i id="bar-cross" className={`fa-solid ${isMobileMenuOpen ? 'fa-circle-xmark' : 'fa-bars'}`}></i>
         </div>
       </header>
-    </div>
+    </>
+    
   )
 }
 
