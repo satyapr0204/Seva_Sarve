@@ -20,7 +20,7 @@ const CancelBooking = () => {
                 <button className="secondary-cta" data-bs-target="#select-date-time-popup" data-bs-toggle="modal" >Reschedule</button>
                 <button type="button" className="secondary-cta cancel">Cancel</button>
               </div>
-              <p className="contact"><Link href="/help-support">Contact Help & Support</Link></p>
+              <p className="contact"><Link href="/help-support" >Contact Help & Support</Link></p>
             </div>
           </div>
         </div>
