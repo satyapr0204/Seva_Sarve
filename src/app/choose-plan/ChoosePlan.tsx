@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 const ChoosePlan = () => {
@@ -75,7 +76,7 @@ const ChoosePlan = () => {
               <div className="col-lg-12">
                 <div className="browse-wrp">
                   <div className="browse-ctg-head my-con-head">
-                    <h2 className="sub-cate-page"> <a href="#"><img src="images/home/left-arrow.svg" alt="" /></a>Choose Your Plan</h2>
+                    <h2 className="sub-cate-page"> <Link href="/home"><img src="images/home/left-arrow.svg" alt="" /></Link>Choose Your Plan</h2>
 
                   </div>
 

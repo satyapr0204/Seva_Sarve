@@ -68,10 +68,27 @@ $(document).ready(function () {
     });
 
     // Home Page: Additional Services Dropdown Slide Effect
-    $(document).on('click', '.additional-text', function () {
-        $(this).next(".service-list").slideToggle(300);
+    // $(document).on('click', '.additional-text', function () {
+    //     $(this).next(".service-list").slideToggle(300);
+    //     $(this).find("img").toggleClass("rotate");
+    // });
+
+    // ==========================================
+// Home Additional Services List Toggle (FIXED)
+// ==========================================
+$(document).ready(function() {
+    
+    // The '.off('click')' clears out duplicate memory listeners before binding a new one!
+    $(document).off('click', '.additional-text').on('click', '.additional-text', function () {
+        
+        // UL toggle with slide effect
+        $(this).next(".service-list").stop(true, true).slideToggle(300);
+
+        // Icon rotate
         $(this).find("img").toggleClass("rotate");
     });
+
+});
 
     // Verification Code / OTP Inputs Focus management
     $(document).on('keyup.verify', '.inputs', function () {

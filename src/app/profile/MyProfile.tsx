@@ -49,7 +49,7 @@ const MyProfile = () => {
               <div className="col-lg-12">
                 <div className="browse-wrp">
                   <div className="browse-ctg-head my-con-head">
-                    <h2 className="sub-cate-page"> <a href="#"><img src="images/home/left-arrow.svg" alt="" /></a>
+                    <h2 className="sub-cate-page"> <Link href="/home"><img src="images/home/left-arrow.svg" alt="" /></Link>
                     {!isEditing ? "My Profile" : "Edit Profile"}
                     </h2>
 

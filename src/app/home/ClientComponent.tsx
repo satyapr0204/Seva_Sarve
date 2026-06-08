@@ -330,6 +330,7 @@ $('.service-list-type .less-service').off('click').on('click', function (e:any) 
                               <li>Vessel Sink Setup</li>
                             </ul>
                           </div>
+                          
                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                           <div className="service-quotes">
                             <p className="service-cost">Cost:<span>$149</span></p>

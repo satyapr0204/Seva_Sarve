@@ -447,7 +447,7 @@ const [expandedAdditional, setExpandedAdditional] = useState<Record<number, bool
                                 style={{ cursor: 'pointer' }}
                                 onClick={() => setExpandedAdditional(prev => ({ ...prev, [index]: !isAdditionalOpen }))}
                             >
-                                Additional Services {!isAdditionalOpen ? '(Show)' : '(Hide)'}
+                                Additional Services {!isAdditionalOpen}
                                 <img src="images/home/additional-service.svg" alt="" />
                             </p>
 
