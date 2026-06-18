@@ -233,7 +233,7 @@ const PaymentMethod = () => {
                       type="button"
                       className="primary-cta"
                       disabled={cards.length === 0}
-                      onClick={() => alert(`Paying using card: ${selectedCard}`)}
+                      {/* onClick={() => alert(`Paying using card: ${selectedCard}`)} */}
                     >
                       Pay Now <span>$70</span>
                     </button>
